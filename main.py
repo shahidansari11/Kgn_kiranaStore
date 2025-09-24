@@ -70,7 +70,7 @@ if admin_pass == "Shahid@2068":
         for index, row in data.iterrows():
             col1, col2, col3 = st.columns([1, 4, 2])
             with col1:
-                st.write(row['OrderID'])
+                st.write(f"{row['OrderID']}")
             with col2:
                 st.write(f"{row['Name']} | {row['Order']} | {row['Status']}")
             with col3:
@@ -93,5 +93,6 @@ elif admin_pass:
     st.error("❌ Wrong password! Access denied.")
 
 st.markdown("🙏 Thank you for visiting us!")
+
 
 
