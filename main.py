@@ -86,11 +86,12 @@ if admin_pass == "Shahid@2068":
         if st.button("💾 Save Changes"):
             edited_df.to_csv("orders.csv", index=False)
             st.success("✅ Orders updated successfully!")
-    except FileNotFoundError:
+except FileNotFoundError:
         st.warning("⚠️ No orders yet!")
 
 elif admin_pass:
     st.error("❌ Wrong password! Access denied.")
 
 st.markdown("🙏 Thank you for visiting us!")
+
 
