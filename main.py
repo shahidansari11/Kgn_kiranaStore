@@ -69,7 +69,7 @@ if admin_pass == "Shahid@2068":
         data = pd.read_csv("orders.csv")
         for index, row in data.iterrows():
            
-        edited_df = st.data_editor(data, num_rows="dynamic")
+            edited_df = st.data_editor(data, num_rows="dynamic")
         st.dataframe(edited_df)
 
         
@@ -83,6 +83,7 @@ elif admin_pass:
     st.error("❌ Wrong password! Access denied.")
 
 st.markdown("🙏 Thank you for visiting us!")
+
 
 
 
