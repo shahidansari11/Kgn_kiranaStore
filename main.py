@@ -32,7 +32,7 @@ if submitted:
         if file_exists:
             existing_df = pd.read_csv("orders.csv")
             if not existing_df.empty:
-                order_id = existing_df["OrderID"].max() + 1
+                order_id = existing_df["OrderID"].max() 
         
         timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         status = "Pending"
@@ -83,6 +83,7 @@ elif admin_pass:
     st.error("❌ Wrong password! Access denied.")
 
 st.markdown("🙏 Thank you for visiting us!")
+
 
 
 
