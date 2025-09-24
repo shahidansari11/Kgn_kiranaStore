@@ -93,3 +93,4 @@ elif admin_pass:
     st.error("❌ Wrong password! Access denied.")
 
 st.markdown("🙏 Thank you for visiting us!")
+
