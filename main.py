@@ -35,15 +35,17 @@ if submitted:
                 order_id = existing_df["OrderID"].max() 
         
         timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        status = "Pending"
         
-        
-        
+        df = pd.DataFrame([[order_id, name, order, address, phone, timestamp, status]], 
+                          columns=["OrderID","Name", "Order", "Address", "Phone", "Timestamp", "Status"])
+        df.to_csv("orders.csv", mode="a", header=not file_exists, index=False)
 
         
         st.success(f"✅ Your order has been placed successfully! Your Order ID is {order_id}")
         st.balloons()
         st.markdown(f"""
-        **OrderID:** {order_id}  
+        **Order ID:** {order_id}  
         **Name:** {name}  
         **Order:** {order}  
         **Address:** {address}  
@@ -68,7 +70,7 @@ if admin_pass == "Shahid@2068":
         for index, row in data.iterrows():
            
             edited_df = st.data_editor(data, num_rows="dynamic")
-        st.dataframe(edited_df)
+            st.dataframe(edited_df)
 
         
         if st.button("💾 Save Changes"):
@@ -81,10 +83,3 @@ elif admin_pass:
     st.error("❌ Wrong password! Access denied.")
 
 st.markdown("🙏 Thank you for visiting us!")
-
-
-
-
-
-
-
