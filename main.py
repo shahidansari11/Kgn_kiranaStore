@@ -68,17 +68,7 @@ if admin_pass == "Shahid@2068":
     try:
         data = pd.read_csv("orders.csv")
         for index, row in data.iterrows():
-            col1, col2, col3 = st.columns([1, 4, 2])
-            with col1:
-                st.write(f"{row['OrderID']}")
-            with col2:
-                st.write(f"{row['Name']} | {row['Order']} | {row['Status']}")
-            with col3:
-                if row['Status'] == "Pending":
-                    if st.button(f"✅ Confirm {row['OrderID']}", key=f"confirm_{row['OrderID']}"):
-                        data.at[index, 'Status'] = "Confirmed"
-                        data.to_csv("orders.csv", index=False)
-                        st.success(f"Order {row['OrderID']} confirmed!")
+           
         edited_df = st.data_editor(data, num_rows="dynamic")
         st.dataframe(edited_df)
 
@@ -93,6 +83,7 @@ elif admin_pass:
     st.error("❌ Wrong password! Access denied.")
 
 st.markdown("🙏 Thank you for visiting us!")
+
 
 
 
