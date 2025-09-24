@@ -3,6 +3,7 @@ import pandas as pd
 import  time
 import os
 st.header("🛒 KGN KIRANA STORE")
+st.subheader("Pro: Irfan Ansari")
 st.subheader("📞 Phone: 9145206349")
 st.markdown("🚚 Home Delivery: **FREE**")
 
@@ -63,4 +64,5 @@ elif admin_pass:
 
 
 st.markdown("🙏 Thank you for visiting us!")
+
 
