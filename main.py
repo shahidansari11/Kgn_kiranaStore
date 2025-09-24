@@ -89,10 +89,7 @@ if admin_pass == "Shahid@2068":
     except FileNotFoundError:
         st.warning("⚠️ No orders yet!")
 
-if admin_pass:
+elif admin_pass:
     st.error("❌ Wrong password! Access denied.")
 
 st.markdown("🙏 Thank you for visiting us!")
-
-
-
