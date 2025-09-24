@@ -35,11 +35,9 @@ if submitted:
                 order_id = existing_df["OrderID"].max() 
         
         timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-        status = "Pending"
         
-        df = pd.DataFrame([[order_id, name, order, address, phone, timestamp, status]], 
-                          columns=["OrderID","Name", "Order", "Address", "Phone", "Timestamp", "Status"])
-        df.to_csv("orders.csv", mode="a", header=not file_exists, index=False)
+        
+        
 
         
         st.success(f"✅ Your order has been placed successfully! Your Order ID is {order_id}")
@@ -83,6 +81,7 @@ elif admin_pass:
     st.error("❌ Wrong password! Access denied.")
 
 st.markdown("🙏 Thank you for visiting us!")
+
 
 
 
