@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 import  time
-
+import os
 st.header("🛒 KGN KIRANA STORE")
 st.subheader("📞 Phone: 9145206349")
 st.markdown("🚚 Home Delivery: **FREE**")
@@ -48,14 +48,19 @@ if submitted:
 
 st.balloons()
 
+admin_pass = st.text_input("Enter admin password", type="password")
 
-if st.button("📋 View All Orders"): 
+if admin_pass == "Shahid@2068":  # yaha apna secret password rakho
+    if st.button("📋 View All Orders",key="view_all_orders_button"): 
         pd.read_csv("orders.csv")
         try:
             data=pd.read_csv("orders.csv")
             st.dataframe(data)
         except FileNotFoundError:
          st.warning("⚠️ Abhi tak koi order nahi aaya hai.")
+elif admin_pass:  
+    st.error("❌ Wrong password! Access denied.")
 
 
 st.markdown("🙏 Thank you for visiting us!")
+
