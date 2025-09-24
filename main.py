@@ -45,7 +45,7 @@ if submitted:
         st.success(f"✅ Your order has been placed successfully! Your Order ID is {order_id}")
         st.balloons()
         st.markdown(f"""
-        **Order ID:** {order_id}  
+        **OrderID:** {order_id}  
         **Name:** {name}  
         **Order:** {order}  
         **Address:** {address}  
@@ -93,4 +93,5 @@ elif admin_pass:
     st.error("❌ Wrong password! Access denied.")
 
 st.markdown("🙏 Thank you for visiting us!")
+
 
