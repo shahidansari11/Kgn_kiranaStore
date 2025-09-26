@@ -40,8 +40,8 @@ def load_orders():
                 skip_blank_lines=True  # Skip empty rows
             )
             except Exception as e:
-            st.error(f"Error reading orders.csv: {e}")
-        return pd.read_csv(ORDERS_FILE, dtype={"OrderID": str})
+                st.error(f"Error reading orders.csv: {e}")
+                return pd.read_csv(ORDERS_FILE, dtype={"OrderID": str})
     return pd.DataFrame(columns=["OrderID", "Name", "Phone", "Email", "Address", "Order", "TotalPrice", "Status", "Timestamp"])
 
 def save_orders(df):
