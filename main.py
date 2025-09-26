@@ -32,40 +32,46 @@ st.markdown("---")
 def load_orders():
     columns = ["OrderID", "Name", "Phone", "Email", "Address", "Order", "TotalPrice", "Status", "Timestamp"]
     if os.path.exists(ORDERS_FILE):
-         try:
-            return pd.read_csv(
+        try:
+            df = pd.read_csv(
                 ORDERS_FILE,
                 dtype={"OrderID": str},
-                encoding="utf-8",      # Unicode safe
-                on_bad_lines='skip',   # Skip corrupted lines
-                skip_blank_lines=True  # Skip empty rows
+                encoding="utf-8",
+                on_bad_lines='skip',
+                skip_blank_lines=True
             )
             for col in columns:
                 if col not in df.columns:
                     df[col] = ""
             return df
-    except Exception as e:
-        st.error(f"Error reading orders.csv: {e}")
-        return pd.DataFrame(columns=columns)
+        except Exception as e:
+            st.error(f"Error reading orders.csv: {e}")
+            return pd.DataFrame(columns=columns)
     else:
         return pd.DataFrame(columns=columns)
+
 def save_orders(df):
     df.to_csv(ORDERS_FILE, index=False)
 
 def load_order_items():
+    columns = ["OrderID", "Item", "Qty", "UnitPrice", "ItemTotal"]
     if os.path.exists(ORDER_ITEMS_FILE):
-         try:
-            return pd.read_csv(
+        try:
+            df = pd.read_csv(
                 ORDER_ITEMS_FILE,
                 encoding="utf-8",
                 on_bad_lines='skip',
                 skip_blank_lines=True
             )
-         except Exception as e:
+            for col in columns:
+                if col not in df.columns:
+                    df[col] = ""
+            return df
+        except Exception as e:
             st.error(f"Error reading order_items.csv: {e}")
-            return pd.DataFrame(columns=["OrderID", "Item", "Qty", "UnitPrice", "ItemTotal"])
-            return pd.read_csv(ORDER_ITEMS_FILE)
-    return pd.DataFrame(columns=["OrderID", "Item", "Qty", "UnitPrice", "ItemTotal"])
+            return pd.DataFrame(columns=columns)
+    else:
+        return pd.DataFrame(columns=columns)
 
 def save_order_items(df):
     df.to_csv(ORDER_ITEMS_FILE, index=False)
@@ -81,7 +87,7 @@ def parse_order_items(order_text):
                 item = " ".join(words[1:])
                 items.append({"qty": qty, "item": item})
             except:
-               items.append({"qty": 1, "item": part.strip()})
+                items.append({"qty": 1, "item": part.strip()})
         else:
             items.append({"qty": 1, "item": part.strip()})
     return items
@@ -282,7 +288,7 @@ if password == "1234":
     else:
         st.subheader("📊 All Orders (Admin CSV View)")
         orders_editor = st.data_editor(orders, use_container_width=True, num_rows="dynamic")
-        for _, row in orders.sort_values("Timestamp", ascending=False).iterrows():
+        for _, row in orders.sort_values("Timestamp", ascending=False, na_position='last').iterrows():
             if pd.isna(row.Order) or str(row.Order).strip() == "":
                 continue
             order_items_parsed = parse_order_items(row.Order)
@@ -325,4 +331,5 @@ if password == "1234":
 
                 st.write(f"📁 Saved bill to `{pdf_path}`")
                 st.download_button("📥 Download Generated Bill (PDF)", data=pdf_buffer, file_name=f"Bill_{row.OrderID}.pdf", mime="application/pdf")
+
 st.markdown("<div style='text-align: center; margin-top: 2rem;'>🙏 Thank you for visiting us!</div>", unsafe_allow_html=True)
