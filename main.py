@@ -30,6 +30,7 @@ st.markdown("---")
 
 # ---------------- HELPERS ----------------
 def load_orders():
+    columns = ["OrderID", "Name", "Phone", "Email", "Address", "Order", "TotalPrice", "Status", "Timestamp"]
     if os.path.exists(ORDERS_FILE):
          try:
             return pd.read_csv(
@@ -39,11 +40,15 @@ def load_orders():
                 on_bad_lines='skip',   # Skip corrupted lines
                 skip_blank_lines=True  # Skip empty rows
             )
-         except Exception as e:
+            for col in columns:
+                if col not in df.columns:
+                    df[col] = ""
+            return df
+        except Exception as e:
             st.error(f"Error reading orders.csv: {e}")
-            
-            return pd.DataFrame(columns=["OrderID", "Name", "Phone", "Email", "Address", "Order", "TotalPrice", "Status", "Timestamp"])
-
+            return pd.DataFrame(columns=columns)
+    else:
+        return pd.DataFrame(columns=columns)
 def save_orders(df):
     df.to_csv(ORDERS_FILE, index=False)
 
