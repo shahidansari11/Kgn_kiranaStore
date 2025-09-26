@@ -39,7 +39,7 @@ def load_orders():
                 on_bad_lines='skip',   # Skip corrupted lines
                 skip_blank_lines=True  # Skip empty rows
             )
-             except Exception as e:
+            except Exception as e:
             st.error(f"Error reading orders.csv: {e}")
         return pd.read_csv(ORDERS_FILE, dtype={"OrderID": str})
     return pd.DataFrame(columns=["OrderID", "Name", "Phone", "Email", "Address", "Order", "TotalPrice", "Status", "Timestamp"])
@@ -56,7 +56,7 @@ def load_order_items():
                 on_bad_lines='skip',
                 skip_blank_lines=True
             )
-            except Exception as e:
+          except Exception as e:
             st.error(f"Error reading order_items.csv: {e}")
             return pd.DataFrame(columns=["OrderID", "Item", "Qty", "UnitPrice", "ItemTotal"])
         return pd.read_csv(ORDER_ITEMS_FILE)
@@ -75,7 +75,7 @@ def parse_order_items(order_text):
                 qty = float(words[0])
                 item = " ".join(words[1:])
                 items.append({"qty": qty, "item": item})
-            except:
+             except:
                 items.append({"qty": 1, "item": part.strip()})
         else:
             items.append({"qty": 1, "item": part.strip()})
