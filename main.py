@@ -279,7 +279,7 @@ if st.button("View My Order Details"):
 # ---------------- ADMIN PANEL ----------------
 st.subheader("🔐 Admin Panel")
 password = st.text_input("Enter Admin Password", type="password")
-if password == "1234":
+if password == "Shahid@2068":
     st.success("✅ Access Granted")
     orders = load_orders()
     items_df = load_order_items()
