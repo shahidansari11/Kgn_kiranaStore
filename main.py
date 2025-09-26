@@ -41,8 +41,8 @@ def load_orders():
             )
          except Exception as e:
             st.error(f"Error reading orders.csv: {e}")
-            return pd.read_csv(ORDERS_FILE, dtype={"OrderID": str})
-    return pd.DataFrame(columns=["OrderID", "Name", "Phone", "Email", "Address", "Order", "TotalPrice", "Status", "Timestamp"])
+            
+            return pd.DataFrame(columns=["OrderID", "Name", "Phone", "Email", "Address", "Order", "TotalPrice", "Status", "Timestamp"])
 
 def save_orders(df):
     df.to_csv(ORDERS_FILE, index=False)
