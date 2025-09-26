@@ -31,7 +31,12 @@ st.markdown("---")
 # ---------------- HELPERS ----------------
 def load_orders():
     if os.path.exists(ORDERS_FILE):
-        return pd.read_csv(ORDERS_FILE, dtype={"OrderID": str})
+        return pd.read_csv(
+            ORDERS_FILE,
+            datatype={"OrderId":str},
+            encoding="utf-8",
+            on_bad_lines='skip'
+        )
     return pd.DataFrame(columns=["OrderID", "Name", "Phone", "Email", "Address", "Order", "TotalPrice", "Status", "Timestamp"])
 
 def save_orders(df):
@@ -301,3 +306,4 @@ if password == "1234":
                 st.write(f"📁 Saved bill to `{pdf_path}`")
                 st.download_button("📥 Download Generated Bill (PDF)", data=pdf_buffer, file_name=f"Bill_{row.OrderID}.pdf", mime="application/pdf")
 st.markdown("<div style='text-align: center; margin-top: 2rem;'>🙏 Thank you for visiting us!</div>", unsafe_allow_html=True)
+
