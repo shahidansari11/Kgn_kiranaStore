@@ -75,7 +75,7 @@ def parse_order_items(order_text):
                 qty = float(words[0])
                 item = " ".join(words[1:])
                 items.append({"qty": qty, "item": item})
-         except:
+          except:
              items.append({"qty": 1, "item": part.strip()})
         else:
             items.append({"qty": 1, "item": part.strip()})
