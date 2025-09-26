@@ -57,9 +57,9 @@ def load_order_items():
                 skip_blank_lines=True
             )
            except Exception as e:
-             st.error(f"Error reading order_items.csv: {e}")
-             return pd.DataFrame(columns=["OrderID", "Item", "Qty", "UnitPrice", "ItemTotal"])
-        return pd.read_csv(ORDER_ITEMS_FILE)
+              st.error(f"Error reading order_items.csv: {e}")
+              return pd.DataFrame(columns=["OrderID", "Item", "Qty", "UnitPrice", "ItemTotal"])
+              return pd.read_csv(ORDER_ITEMS_FILE)
     return pd.DataFrame(columns=["OrderID", "Item", "Qty", "UnitPrice", "ItemTotal"])
 
 def save_order_items(df):
