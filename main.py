@@ -39,7 +39,7 @@ def load_orders():
                 on_bad_lines='skip',   # Skip corrupted lines
                 skip_blank_lines=True  # Skip empty rows
             )
-        except Exception as e:
+         except Exception as e:
             st.error(f"Error reading orders.csv: {e}")
             return pd.read_csv(ORDERS_FILE, dtype={"OrderID": str})
     return pd.DataFrame(columns=["OrderID", "Name", "Phone", "Email", "Address", "Order", "TotalPrice", "Status", "Timestamp"])
