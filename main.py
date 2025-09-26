@@ -44,9 +44,9 @@ def load_orders():
                 if col not in df.columns:
                     df[col] = ""
             return df
-           except Exception as e:
-              st.error(f"Error reading orders.csv: {e}")
-              return pd.DataFrame(columns=columns)
+            except Exception as e:
+               st.error(f"Error reading orders.csv: {e}")
+               return pd.DataFrame(columns=columns)
     else:
         return pd.DataFrame(columns=columns)
 def save_orders(df):
