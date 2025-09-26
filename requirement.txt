@@ -1,7 +1,9 @@
-
 pandas==2.2.3
-streamlit==1.45.1
-streamlit
-pandas
-reportlab
+
+reportlab==4.4.4
+streamlit==1.50.0
+streamlit-autorefresh==1.0.1
+streamlit-javascript==0.1.5
+
+
 
